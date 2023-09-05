@@ -1,0 +1,79 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #b30033;
+  --ifm-color-primary-dark: #a1002e;
+  --ifm-color-primary-darker: #98002b;
+  --ifm-color-primary-darkest: #7d0024;
+  --ifm-color-primary-light: #c50038;
+  --ifm-color-primary-lighter: #ce003b;
+  --ifm-color-primary-lightest: #e90042;
+  --ifm-code-font-size: 92%;
+  --docusaurus-highlighted-code-line-bg: rgba(147, 178, 244, 0.38) !important;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #fb799e;
+  --ifm-color-primary-dark: #fa5584;
+  --ifm-color-primary-darker: #f94377;
+  --ifm-color-primary-darkest: #f80d50;
+  --ifm-color-primary-light: #fc9db8;
+  --ifm-color-primary-lighter: #fdafc5;
+  --ifm-color-primary-lightest: #fee5ec;
+  --ifm-background-color: #161616 !important;
+}
+
+.nav-font-size {
+  font-size: 0.95rem;
+}
+
+.nav-link_getting-started {
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  background-color: #e51e56;
+  border-radius: 3px;
+  margin: 0 15px;
+  padding-bottom: 4.5px;
+  font-size: 0.95rem;
+}
+
+.nav-link_getting-started:hover {
+  color: #fff;
+  background-color: #d62356;
+}
+
+[data-theme="dark"] .theme-doc-sidebar-container {
+  border-right: 0.1px solid rgb(65, 64, 64);
+  font-size: 0.95rem;
+}
+
+[data-theme="dark"] .navbar {
+  background-color: #161616;
+  font-size: 0.95rem;
+  padding: 8px 22px;
+  border-bottom: 0.1px solid rgb(65, 64, 64);
+}
+
+[data-theme="dark"] .card {
+  background-color: #191919;
+  transition: 0.2s ease all;
+}
+
+[data-theme="dark"] .card:hover {
+  border: none;
+  background-color: #262626;
+  transition: 0.3s ease-in all;
+}
+
+[data-theme="light"] .card:hover {
+  border: none;
+  background-color: #fbfbfb;
+  transition: 0.2s ease all;
+}
