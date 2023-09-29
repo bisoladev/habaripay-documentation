@@ -1,0 +1,73 @@
+.accordion {
+  max-width: 80vw;
+  margin: 100px auto 0;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accordion-visible {
+  background: #fff;
+  width: 100%;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.api-link {
+  font-size: 0.9rem;
+}
+
+.api-pill {
+  background-color: #3b854d;
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  width: 80px; /* Adjust the width as needed */
+  height: 24px;
+  text-align: center; /* Center the text horizontally */
+  line-height: 16px;
+}
+.accordion-visible svg {
+  width: 20px;
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease-in-out;
+}
+.accordion-visible svg.active {
+  transform: rotate(0deg);
+}
+
+.accordion-visible h2 {
+  font-size: 20px;
+}
+
+.accordion-toggle {
+  height: 0px;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+  color: #333;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.animated {
+  opacity: 1;
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.accordion-toggle p {
+  margin: 0;
+  padding: 22px 15px;
+  pointer-events: none;
+  line-height: 1.3;
+}

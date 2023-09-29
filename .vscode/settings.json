@@ -1,0 +1,6 @@
+{
+  "prettier.enable": false,
+  "html.format.enable": false,
+  "csharpextensions.reFormatAfterChange": false,
+  "editor.formatOnSave": true
+}
