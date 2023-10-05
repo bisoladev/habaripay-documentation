@@ -1,10 +1,8 @@
 .accordion {
-  max-width: 90vw;
+  max-width: 100%;
   margin: 10px auto 0;
   background: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .accordion-visible {
@@ -19,24 +17,27 @@
   padding: 7px 15px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  padding: 20px;
+  position: absolute;
+  z-index: 99999999999;
 }
 
-.api-link {
+/* .api-link {
   font-size: 0.9rem;
-}
+} */
 
-.api-pill {
+/* .api-pill {
   background-color: #3b854d;
   color: #fff;
   border-radius: 20px;
   padding: 0.2rem 0.8rem;
   font-weight: 600;
   font-size: 0.9rem;
-  width: 80px; /* Adjust the width as needed */
+  width: 80px; 
   height: 24px;
-  text-align: center; /* Center the text horizontally */
+  text-align: center; 
   line-height: 16px;
-}
+} */
 .accordion-visible svg {
   width: 20px;
   transform: rotate(-90deg);
@@ -58,7 +59,10 @@
   color: #333;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  position: relative;
+  z-index: 1;
 }
+
 
 .animated {
   opacity: 1;

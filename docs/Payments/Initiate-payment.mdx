@@ -3,8 +3,11 @@ sidebar_position: 1
 ---
 
 import Accordion from "@site/src/components/Accordion";
+import CodeAccordion from "../../src/components/CodeAccordion";
+import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
 
 # Initiate Payment
 
-<Accordion />
+<Accordion items={paymentLinkAPI}/>
+<CodeAccordion responses ={paymentLinkResponse} />
 

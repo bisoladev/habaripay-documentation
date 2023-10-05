@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Accordion.css";
-import { paymentLinkAPI } from "../../data"
-import DataTable from "./dataTable";
+import styled from 'styled-components'
 
-console.log(paymentLinkAPI, 'jbjdb')
 
-export default function Accordion({ children }) {
+export default function Accordion({ children, items }) {
   const [toggle, setToggle] = useState(false);
   const [heightEl, setHeightEl] = useState();
 
   const refHeight = useRef();
 
   useEffect(() => {
-    // console.log(refHeight);
     setHeightEl(`${refHeight.current.scrollHeight}px`);
   }, []);
 
@@ -22,22 +19,6 @@ export default function Accordion({ children }) {
 
   return (
     <>
-      <div>
-        {paymentLinkAPI.map((item, id) => {
-          <div key={item.key + id} >
-            <div>
-              {item.key}
-            </div>
-            <div>
-              {item.dataType}
-            </div>
-            <div>
-              {item.description}
-              <p>Bisolao</p>
-            </div>
-          </div>
-        })}
-      </div>
       <div className="accordion">
         <button onClick={toggleState} className="accordion-visible">
           <span className="api-pill">POST</span>
@@ -65,9 +46,59 @@ export default function Accordion({ children }) {
             corporis unde, dicta quibusdam aut placeat dignissimos distinctio vel
             quo eligendi ipsam.
           </p>
-          {/* <div>{children}</div> */}
-          <DataTable />
+          <div>{children}</div>
+          <div>
+            {items?.map((item, id) => {
+              return (
+                <Container key={item?.key + id}>
+                  <div className='text'>
+                    <p>{item?.key}</p>
+                  </div>
+                  <div>
+                    <p>{item?.dataType}</p>
+                  </div>
+                  <div>
+                    <p>{item?.description}</p>
+                  </div>
+                </Container>
+              )
+            })}
+          </div>
+        </div> <div
+          className={toggle ? "accordion-toggle animated" : "accordion-toggle"}
+          style={{ height: toggle ? `${heightEl}` : "0px" }}
+          ref={refHeight}
+        >
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+            suscipit quae maiores sunt ducimus est dolorem perspiciatis earum
+            corporis unde, dicta quibusdam aut placeat dignissimos distinctio vel
+            quo eligendi ipsam.
+          </p>
+          <div>{children}</div>
+          <div>
+            {items?.map((item, id) => {
+              return (
+                <Container key={item?.key + id}>
+                  <div className='text'>
+                    <p>{item?.key}</p>
+                  </div>
+                  <div>
+                    <p>{item?.dataType}</p>
+                  </div>
+                  <div>
+                    <p>{item?.description}</p>
+                  </div>
+                </Container>
+              )
+            })}
+          </div>
         </div>
       </div></>
   );
 }
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr
+`
