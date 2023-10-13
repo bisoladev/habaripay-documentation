@@ -63,7 +63,7 @@ export const Toggle = ({ data }) => {
 
 export default function Accordion({ items }) {
   return (
-    <div className='bg-[#f2f2f2] h-screen flex justify-center items-center'>
+    <div className='bg-yellow-600 dark:bg-red-600'>
       <div className='list'>
         {items?.map((item) => {
           return (
@@ -83,6 +83,8 @@ const Wrapper = styled.div`
   .header {
     font-weight: 700;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
   }
 
   .accordion-details {
