@@ -9,25 +9,26 @@ export const Toggle = ({ data }) => {
   const [active, setActive] = useState(false);
 
   const classState = active ? "open" : "";
+  const rotate = active ? "rotate-90" : "";
+  const pillColor = data?.pill;
 
   const onClick = () => {
     setActive(state => !state);
   }
 
   return (
-    <Wrapper className={classState}>
+    <Wrapper className={`${classState} dark:border-b-[#303337]`}>
       <div className="header" onClick={onClick}>
-        <span>{data?.status}</span>
-        <span className="api-link">
+        <div className="flex">
+          <div className={`w-2 h-2 rounded-full ${pillColor} mt-2 mr-2`} />
+          <span>{data?.status}</span>
+        </div>
+
+        <span className="justify-self-center font-normal">
           {data?.responseMsg}
         </span>
-        <svg
-          // className={toggle ? "active" : ""}
-          xmlns="http://www.w3.org/2000/svg"
-          height="1em"
-          viewBox="0 0 448 512"
-        >
-          <path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all justify-self-end`}>
+          <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
         </svg>
       </div>
       <div className="accordion-details">
@@ -63,8 +64,8 @@ export const Toggle = ({ data }) => {
 
 export default function Accordion({ items }) {
   return (
-    <div className='bg-yellow-600 dark:bg-red-600'>
-      <div className='list'>
+    <Container className=' dark:border-[#303337] shadow-[3px_3px_7px_rgba(0,0,0,0.04)]'>
+      <div className="">
         {items?.map((item) => {
           return (
             <Toggle key={item.key} data={item} />
@@ -72,19 +73,38 @@ export default function Accordion({ items }) {
         })}
       </div>
 
-    </div>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  padding: 10px 20px 15px;
+
+  :last-child {
+    border-bottom: none;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+`;
+
 
 const Wrapper = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f7f7f7;
+  padding-bottom: 10px;
+  
+ 
 
   .header {
     font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
-    display: flex;
+    display: grid;
     justify-content: space-between;
+    grid-template-columns: 2fr 4fr 1fr;
+    column-gap: 1rem;
   }
 
   .accordion-details {
