@@ -1,30 +1,31 @@
 export const paymentLinkAPI = [
     {
-        key: "name",
+        key: "1",
+        dataType: "String",
+        description: "Title/Name of the Payment Link",
+        required: true,
+        active: 0
+    },
+    {
+        key: "2",
         dataType: "String",
         description: "Title/Name of the Payment Link",
         required: true
     },
     {
-        key: "name",
+        key: "3",
         dataType: "String",
         description: "Title/Name of the Payment Link",
         required: true
     },
     {
-        key: "name",
-        dataType: "String",
-        description: "Title/Name of the Payment Link",
-        required: true
-    },
-    {
-        key: "name",
+        key: "4",
         dataType: "String",
         description: "URL to be redirected to after payment. When this is not provided, the default redirect URL set on your dashboard will be used",
         required: true
     },
     {
-        key: "name",
+        key: "5",
         dataType: "String",
         description: "Title/Name of the Payment Link",
         required: true

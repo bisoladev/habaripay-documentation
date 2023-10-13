@@ -2,12 +2,14 @@
 sidebar_position: 1
 ---
 
-import Accordion from "@site/src/components/Accordion";
+import Accordion from "@site/src/components/AccordionNew";
 import CodeAccordion from "../../src/components/CodeAccordion";
 import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
+import ApiTest from "@site/src/components/ApiTest"
 
 # Initiate Payment
 
-<Accordion items={paymentLinkAPI}/>
-<CodeAccordion responses ={paymentLinkResponse} />
+<Accordion items={paymentLinkResponse}/>
+<ApiTest />
 
+<Script strategy="beforeInteractive" src={`https://checkout.squadco.com/widget/squad.min.js`} />
