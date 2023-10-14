@@ -10,8 +10,6 @@ export const Pre = styled.pre`
   border-radius: 8px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  
-  
   padding-bottom: 10px;
   
   height: 94%;
@@ -22,7 +20,7 @@ export const Pre = styled.pre`
     
   }
   @media screen and (max-width: 524px) {
-    max-width: 521px;
+    max-width: 100%;
   }
   @media screen and (max-width: 1024px) {
     height: 200px;

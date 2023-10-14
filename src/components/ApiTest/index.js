@@ -47,21 +47,21 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
 
   return (
     <div className='flex flex-col justify-center align-middle'>
-      <div className='h-10 w-[98%] border-2 border-solid border-[#ebebf2] rounded-t-lg flex justify-between pt-3 px-5 text-[13px] leading-[10px]'>
+      <div className='h-10 w-[98%] border-2 border-solid border-[#ebebf2] rounded-t-lg flex justify-between pt-3 px-2 md:px-5 text-[11px] md:text-[13px] leading-[10px]'>
         <div className='flex'>
-          <div className='w-[10px] h-[10px] bg-[#e73a2e] opacity-40 rounded-full' />
-          <div className='w-[10px] h-[10px] bg-[#fcc938] opacity-40 rounded-full mx-1' />
-          <div className='w-[10px] h-[10px] bg-[#12b36c] opacity-40 rounded-full' />
+          <div className='w-[10px] h-[10px] bg-[#e73a2e] opacity-40 rounded-full max-[480px]:w-1 max-[480px]:h-1' />
+          <div className='w-[10px] h-[10px] bg-[#fcc938] opacity-40 rounded-full mx-1 max-[480px]:w-1 max-[480px]:h-1' />
+          <div className='w-[10px] h-[10px] bg-[#12b36c] opacity-40 rounded-full max-[480px]:w-1 max-[480px]:h-1' />
         </div>
         <div className='flex'>
           <p className='text-[#008488]'>POST</p>
-          <p className='text-gray-500 pl-4'>api.squad.co/payment/Initiate</p>
+          <p className='text-gray-500 pl-2 md:pl-4'>api.squad.co/payment/Initiate</p>
         </div>
         <div>
-          <p className='text-[#008488] text-xs'>cURL</p>
+          <p className='text-[#008488] text-[10px] md:text-xs'>cURL</p>
         </div>
       </div>
-      <div className='w-[98%] border-2 border-solid border-[#ebebf2] border-t-0 rounded-b-lg px-5 py-6 grid grid-cols-2'>
+      <div className='w-[98%] border-2 border-solid border-[#ebebf2] border-t-0 rounded-b-lg px-5 py-6 md:grid  md:grid-cols-2'>
         <div>
           <form className='text-base'>
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" className='fill-[#F2C278] mb-4'>
@@ -80,7 +80,7 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
               placeholder='e.g 10000'
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-44'
+              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-full md:w-44'
             />
             <p className='text-xs pt-1 font-medium text-gray-400'>minimum amount is 1000</p>
           </div>
@@ -92,10 +92,10 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
               placeholder='e.g example@email.com'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-44'
+              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-full md:w-44'
             />
           </div>
-          <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-44 hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-[8px] rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
+          <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-full md:w-44 hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-[8px] rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
         </div>
         <div className=''>
           <Highlight
