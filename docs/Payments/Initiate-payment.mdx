@@ -2,14 +2,24 @@
 sidebar_position: 1
 ---
 
-import Accordion from "@site/src/components/AccordionNew";
-import CodeAccordion from "../../src/components/CodeAccordion";
+import Accordion from "@site/src/components/Accordion";
+import AccordionCode from "@site/src/components/AccordionCode";
 import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
 import ApiTest from "@site/src/components/ApiTest"
 
 # Initiate Payment
 
-<Accordion items={paymentLinkResponse}/>
-{/* <ApiTest /> */}
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
 
 <Script strategy="beforeInteractive" src={`https://checkout.squadco.com/widget/squad.min.js`} />
+
+{/* <ApiTest /> */}
+{/* <AccordionCode items={paymentLinkResponse}/> */}

@@ -62,7 +62,7 @@ export const Toggle = ({ data }) => {
   );
 }
 
-export default function Accordion({ items }) {
+export default function AccordionCode({ items }) {
   return (
     <Container className=' dark:border-[#303337] shadow-[3px_3px_7px_rgba(0,0,0,0.04)]'>
       <div className="">

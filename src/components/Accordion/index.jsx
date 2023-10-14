@@ -1,104 +1,120 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./Accordion.css";
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
+
+const Accordion = (props) => {
+  const [active, setActive] = useState(false);
+
+  const classState = active ? "open" : "";
+  const rotate = active ? "rotate-90" : "";
+  const methodColor = props?.method === "POST" ? "bg-[#217837]" : props?.method === "GET" ? "bg-[#2854D2]" : "bg-[green]"
+
+  const onClick = () => {
+    setActive(state => !state);
+  }
 
 
-export default function Accordion({ children, items }) {
-  const [toggle, setToggle] = useState(false);
-  const [heightEl, setHeightEl] = useState();
 
-  const refHeight = useRef();
-
-  useEffect(() => {
-    setHeightEl(`${refHeight.current.scrollHeight}px`);
-  }, []);
-
-  const toggleState = () => {
-    setToggle(!toggle);
-  };
 
   return (
-    <>
-      <div className="accordion">
-        <button onClick={toggleState} className="accordion-visible">
-          <span className="api-pill">POST</span>
-          <span className="api-link">
-            https://sandbox-api-d.squadco.com/transaction/initiate
-          </span>
-          <svg
-            className={toggle ? "active" : ""}
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 448 512"
-          >
-            <path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-          </svg>
-        </button>
+    <Container className=' dark:border-[#303337] shadow-[3px_3px_7px_rgba(0,0,0,0.04)]'>
+      <Wrapper className={`${classState}`}>
+        <div className="header" onClick={onClick}>
+          <div className={`${methodColor} w-16 h-6 rounded-3xl text-center  mt-2 mr-2 text-white`}>{props.method}</div>
 
-        <div
-          className={toggle ? "accordion-toggle animated" : "accordion-toggle"}
-          style={{ height: toggle ? `${heightEl}` : "0px" }}
-          ref={refHeight}
-        >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-            suscipit quae maiores sunt ducimus est dolorem perspiciatis earum
-            corporis unde, dicta quibusdam aut placeat dignissimos distinctio vel
-            quo eligendi ipsam.
-          </p>
-          <div>{children}</div>
-          <div>
-            {items?.map((item, id) => {
-              return (
-                <Container key={item?.key + id}>
-                  <div className='text'>
-                    <p>{item?.key}</p>
-                  </div>
-                  <div>
-                    <p>{item?.dataType}</p>
-                  </div>
-                  <div>
-                    <p>{item?.description}</p>
-                  </div>
-                </Container>
-              )
-            })}
-          </div>
-        </div> <div
-          className={toggle ? "accordion-toggle animated" : "accordion-toggle"}
-          style={{ height: toggle ? `${heightEl}` : "0px" }}
-          ref={refHeight}
-        >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-            suscipit quae maiores sunt ducimus est dolorem perspiciatis earum
-            corporis unde, dicta quibusdam aut placeat dignissimos distinctio vel
-            quo eligendi ipsam.
-          </p>
-          <div>{children}</div>
-          <div>
-            {items?.map((item, id) => {
-              return (
-                <Container key={item?.key + id}>
-                  <div className='text'>
-                    <p>{item?.key}</p>
-                  </div>
-                  <div>
-                    <p>{item?.dataType}</p>
-                  </div>
-                  <div>
-                    <p>{item?.description}</p>
-                  </div>
-                </Container>
-              )
-            })}
+          <span className="justify-self-center font-medium text-sm">
+            https://sandbox-api-d.squadco.com/<span className="font-normal">{props.endpoint}</span>
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all justify-self-end`}>
+            <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+          </svg>
+        </div>
+        <div className="accordion-details">
+          <div className="content">
+            {props?.header ? <h3>{props?.header}</h3> : null}
+            {props?.summary ? <p className="text-base">{props?.summary}</p> : null}
+
+            {props?.parameters ? <div><h4 className="pb-4">Parameters</h4>
+              <div>
+                {props?.items?.map((item, id) => {
+                  return (
+                    <div>
+                      <h5 className="text-sm">{item.title}</h5>
+                      <div className="items-wrap">
+                        {item?.children?.map((param) => {
+                          return (
+                            <div key={param?.key + id} className="grid grid-cols-[1fr_1fr_2fr] text-sm border-bottom pt-3.5">
+                              <div className='text'>
+                                <p className="tracking-widest">{param?.key}</p>
+                              </div>
+                              <div>
+                                <p>{param?.dataType}</p>
+                              </div>
+                              <div>
+                                <p>{param?.description}</p>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div> </div> : null}
           </div>
         </div>
-      </div></>
+      </Wrapper>
+    </Container>
   );
 }
 
+export default Accordion;
+
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr
-`
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  padding: 10px 35px 15px;
+
+  .items-wrap {
+    :last-child {
+    border-bottom: none;
+  }
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid rgba(174, 174, 174, 0.2);
+
+  }
+`;
+
+
+
+
+const Wrapper = styled.div`
+  
+  .header {
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .accordion-details {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: all 0.4s ease-out;
+
+    .content {
+      overflow: hidden;
+    }
+  }
+
+  &.open {
+    .accordion-details {
+      grid-template-rows: 1fr;
+      padding-block: 1.5rem;
+    }
+  }
+`;
+
