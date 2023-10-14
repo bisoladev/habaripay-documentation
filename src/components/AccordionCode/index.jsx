@@ -20,8 +20,8 @@ export const Toggle = ({ data }) => {
     <Wrapper className={`${classState} dark:border-b-[#303337]`}>
       <div className="header" onClick={onClick}>
         <div className="flex">
-          <div className={`w-2 h-2 rounded-full ${pillColor} mt-2 mr-2`} />
-          <span>{data?.status}</span>
+          <div className={`w-2 h-2 flex-none rounded-full ${pillColor} mt-2 mr-2`} />
+          <span className="">{data?.status}</span>
         </div>
 
         <span className="justify-self-center font-normal">
@@ -88,6 +88,10 @@ const Container = styled.div`
     margin-bottom: 0px;
     padding-bottom: 0px;
   }
+
+  @media only screen and (max-width: 600px) {
+    padding: 10px 15px 15px;
+  }
 `;
 
 
@@ -122,6 +126,12 @@ const Wrapper = styled.div`
     .accordion-details {
       grid-template-rows: 1fr;
     }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .header {
+    font-size: 12px;
+  }
   }
 `;
 

@@ -70,7 +70,7 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
             <h4 className='payment-text'>
               Enter Payment details
             </h4>
-            <p className='text-sm w-9/12 leading-5'>Help us send transactions receipts to the customers</p>
+            <p className='text-sm md:w-9/12 leading-5'>Help us send transactions receipts to the customers</p>
           </form>
           <div className='flex flex-col'>
             <label className='pb-1 text-sm' htmlFor='amount'>Charge Amount</label>
