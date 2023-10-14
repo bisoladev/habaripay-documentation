@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Highlight, { defaultProps } from "prism-react-renderer"
-import oceanicNext from "prism-react-renderer/themes/oceanicNext"
+import github from "prism-react-renderer/themes/github"
 import { Pre, Line, LineContent, LineNo } from "./styles"
 
 
@@ -36,7 +36,7 @@ export const Toggle = ({ data }) => {
           <Highlight
             {...defaultProps}
             code={data?.code}
-            theme={oceanicNext}
+            theme={github}
             language={"jsx"}
           >
             {({ className, style, tokens, getLineProps, getTokenProps }) => (

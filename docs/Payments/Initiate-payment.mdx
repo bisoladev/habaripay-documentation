@@ -9,6 +9,14 @@ import ApiTest from "@site/src/components/ApiTest"
 
 # Initiate Payment
 
+
+
+<Script strategy="beforeInteractive" src={`https://checkout.squadco.com/widget/squad.min.js`} />
+
+<ApiTest />
+
+<AccordionCode items={paymentLinkResponse}/>
+
 <Accordion 
     items={paymentLinkAPI} 
     parameters={true} 
@@ -17,9 +25,3 @@ import ApiTest from "@site/src/components/ApiTest"
     header={"This verifies a transaction"} 
     summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
 />
-
-
-<Script strategy="beforeInteractive" src={`https://checkout.squadco.com/widget/squad.min.js`} />
-
-{/* <ApiTest /> */}
-<AccordionCode items={paymentLinkResponse}/>
