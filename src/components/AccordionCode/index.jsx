@@ -6,14 +6,14 @@ import { Pre, Line, LineContent, LineNo } from "./styles"
 
 
 export const Toggle = ({ data }) => {
-  const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const classState = active ? "open" : "";
-  const rotate = active ? "rotate-90" : "";
+  const classState = open ? "open" : "";
+  const rotate = open ? "rotate-90" : "";
   const pillColor = data?.pill;
 
   const onClick = () => {
-    setActive(state => !state);
+    setOpen(state => !state);
   }
 
   return (
@@ -27,7 +27,7 @@ export const Toggle = ({ data }) => {
         <span className="justify-self-center font-normal">
           {data?.responseMsg}
         </span>
-        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all justify-self-end`}>
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all justify-self-end dark:fill-white`} >
           <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
         </svg>
       </div>
@@ -64,7 +64,7 @@ export const Toggle = ({ data }) => {
 
 export default function AccordionCode({ items }) {
   return (
-    <Container className=' dark:border-[#303337] shadow-[3px_3px_7px_rgba(0,0,0,0.04)]'>
+    <Container className=' dark:border-[#303337]'>
       <div className="">
         {items?.map((item) => {
           return (
@@ -80,7 +80,8 @@ export default function AccordionCode({ items }) {
 const Container = styled.div`
   border: 1px solid #eeeeee;
   border-radius: 5px;
-  padding: 10px 20px 15px;
+  padding: 10px 35px 15px;
+  margin-top: 1.5rem;
 
   :last-child {
     border-bottom: none;

@@ -16,7 +16,7 @@ const Accordion = (props) => {
 
 
   return (
-    <Container className=' dark:border-[#303337] shadow-[3px_3px_7px_rgba(0,0,0,0.04)]'>
+    <Container className=' dark:border-[#303337]'>
       <Wrapper className={`${classState}`}>
         <div className="header" onClick={onClick}>
           <div className={`${methodColor} w-16 h-6 rounded-3xl text-center  mt-2 mr-2 text-white`}>{props.method}</div>
@@ -24,7 +24,7 @@ const Accordion = (props) => {
           <span className="justify-self-center font-medium text-sm">
             https://sandbox-api-d.squadco.com/<span className="font-normal">{props.endpoint}</span>
           </span>
-          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all justify-self-end`}>
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all justify-self-end dark:fill-white`}>
             <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
           </svg>
         </div>
@@ -59,7 +59,8 @@ const Accordion = (props) => {
                     </div>
                   )
                 })}
-              </div> </div> : null}
+              </div>
+            </div> : null}
           </div>
         </div>
       </Wrapper>
