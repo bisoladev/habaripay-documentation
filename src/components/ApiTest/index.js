@@ -80,7 +80,7 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
               placeholder='e.g 10000'
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-full md:w-44'
+              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-full md:w-7/12'
             />
             <p className='text-xs pt-1 font-medium text-gray-400'>minimum amount is 1000</p>
           </div>
@@ -92,10 +92,10 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
               placeholder='e.g example@email.com'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-full md:w-44'
+              className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-full md:w-7/12'
             />
           </div>
-          <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-full md:w-44 hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-[8px] rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
+          <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-full md:w-7/12 hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-[8px] rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
         </div>
         <div className=''>
           <Highlight
