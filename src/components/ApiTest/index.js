@@ -95,7 +95,7 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
               className='rounded-[3px] px-3 py-2 border-[#ededf3] border-solid border w-full md:w-7/12'
             />
           </div>
-          <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-full md:w-7/12 hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-[8px] rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
+          <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-full md:w-7/12 hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-[10px] rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
         </div>
         <div className=''>
           <Highlight
