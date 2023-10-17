@@ -1,0 +1,163 @@
+---
+sidebar_position: 1
+---
+
+import Accordion from "@site/src/components/Accordion";
+import AccordionCode from "@site/src/components/AccordionCode";
+import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
+
+
+# Webhook & Redirect URL
+
+Webhooks are used so that anytime an event occurs on your account, your application can be notified with instant, real-time notifications by Squad.
+
+Squad webhooks are HTTP calls that are triggered by specific events. It is necessary only for behind-the-scenes transactions. 
+
+This can be set up on your Squad Dashboard by specifying a URL we would send POST requests to whenever a successful transaction occurs. 
+
+To process notifications, you need to:
+
+Paste your redirect and **Callback/Webhook URL** in the space provided on your dashboard by following the steps below:
+
+- Login to your Squad dashboard. 
+- Go to Profile > API & Webhook.
+- In the Webhook URL field, enter your Notification URL.
+- In the redirect URL field, enter your redirect URL- and on completion of payment, the customer will be redirected to the URL with the transaction reference passed as a query param.
+- Enter a redirect URL for your customers to be redirected after they complete payment.
+
+:::info
+Note: The Redirect URL is optional.
+:::
+
+:::caution
+**KINDLY ENSURE YOU HAVE A TRANSACTION REFERENCE CHECKER WHEN IMPLEMENTING WEBHOOKS TO AVOID GIVING DOUBLE VALUE ON TRANSACTIONS.**
+:::
+
+### Webhook Validation
+
+To configure webhook notifications: go to **_dashboard > profile > Api & Webhooks._**
+
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+Sample POST request to be sent via webhook upon successful transaction
+
+### Sample Webhook for Card Transactions
+
+```
+{
+  "Event": "charge_successful",
+  "TransactionRef": "4678388588A0",
+  "Body": {
+    "amount": 83000,
+    "transaction_ref": "4678388588A0",
+    "gateway_ref": "4678388588A0_1_1",
+    "transaction_status": "success",
+    "email": "henimastic@gmail.com",
+    "merchant_id": "SBN1EBZEQ8",
+    "currency": "NGN",
+    "transaction_type": "Card",
+    "merchant_amount": 82170,
+    "created_at": "2022-09-06T15:28:02.477",
+    "customer_mobile": null,
+    "meta": {},
+    "payment_information": {
+      "payment_type": "card",
+      "pan": "408408******4081",
+      "recurring_id": null,
+      "card_type": "visa",
+      "token_id": "tJlYMKcwPd"
+    }
+  }
+}
+```
+
+### Sample Webhook for Bank Transfer Option
+
+```
+{
+  "Event": "charge_successful",
+  "TransactionRef": "SQGRAN7557984665043",
+  "Body": {
+    "amount": 10000,
+    "transaction_ref": "SQGRAN7557984665043",
+    "gateway_ref": "SQGRAN7557984665043_2_1",
+    "transaction_status": "Success",
+    "email": "urannas@gmail.com",
+    "merchant_id": "HD3DDPKW",
+    "currency": "NGN",
+    "transaction_type": "Bank",
+    "merchant_amount": 9900,
+    "created_at": "2023-01-23T10:01:52.284",
+    "meta": {},
+    "is_recurring": false
+  }
+}
+
+```
+
+### SAMPLE WEBHOOK FOR USSD PAYMENT OPTION
+
+```
+{
+  "Event": "charge_successful",
+  "TransactionRef": "SQCHIZ6035872641857",
+  "Body": {
+    "amount": 20000,
+    "transaction_ref": "SQCHIZ6035872641857",
+    "gateway_ref": "SQCHIZ6035872641857_3_1",
+    "transaction_status": "Success",
+    "email": "maaa@h.com",
+    "currency": "NGN",
+    "transaction_type": "Ussd",
+    "merchant_amount": 19800,
+    "created_at": "2023-01-25T13:41:16.223",
+    "customer_mobile": "0803***7205",
+    "meta": {
+      "plan": "premium"
+    },
+    "is_recurring": false
+  }
+}
+```
+
+### Sample Webhook for Merchant USSD (USSD CODE ON THE DASHBOARD)
+
+```
+{
+  "Event": "charge_successful",
+  "TransactionRef": "SQCHIZ410708",
+  "Body": {
+    "amount": 10000,
+    "transaction_ref": "SQCHIZ410708",
+    "gateway_ref": "f7c810f4-b53e-4970-a3f6",
+    "transaction_status": "Success",
+    "email": "0803***0000",
+    "merchant_id": "********",
+    "currency": "NGN",
+    "transaction_type": "MerchantUssd",
+    "merchant_amount": 10000,
+    "created_at": "2022-11-30T16:21:52.8850061+00:00",
+    "customer_mobile": "0803***0000",
+    "meta": {},
+    "payment_information": {
+      "payment_type": "merchantussd",
+      "customer_ref": "123456"
+    },
+    "is_recurring": false
+  }
+}
+```
+
+:::info
+**Please Note that the encrypted body (x-squad-encrypted-body) is usually sent via the header**
+:::

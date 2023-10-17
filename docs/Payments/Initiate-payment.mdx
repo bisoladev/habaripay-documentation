@@ -1,21 +1,37 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
-import ApiTest from "@site/src/components/ApiTest"
+import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js";
+import {sampleRequest} from "../../src/data/PaymentDocs/data.js";
+import ApiTest from "@site/src/components/ApiTest";
 
 # Initiate Payment
 
+<p className="text-[#8899a8] font-normal text-xl">This API allows you to initiate transaction by making calls from your server which returns a URL that when visited will call up our payment modal. </p>
+
+:::caution
+
+** Authorization ** Any request made without the authorization key (secret key) will fail with a ** 401 ** (Unauthorized) response code.
+
+:::
+
+:::info
+
+**The authorization key is sent via the request header as Bearer Token Authorization**
+
+:::
 
 
-<Script strategy="beforeInteractive" src={`https://checkout.squadco.com/widget/squad.min.js`} />
+**Example**:
+Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
+
+
+
 
 <ApiTest />
-
-<AccordionCode items={paymentLinkResponse}/>
 
 <Accordion 
     items={paymentLinkAPI} 
@@ -25,3 +41,64 @@ import ApiTest from "@site/src/components/ApiTest"
     header={"This verifies a transaction"} 
     summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
 />
+
+<AccordionCode items={paymentLinkResponse}/>
+
+### Sample Request
+
+```
+{
+    "amount":43000,
+    "email":"henimastic@gmail.com",
+    "currency":"NGN",
+    "initiate_type": "inline",
+    "transaction_ref":"4678388588350909090AH",
+    "callback_url":"http://squadco.com"
+}
+```
+
+
+### Charge Authorization on Card 
+This allows you charge an authorization on a card. 
+
+:::caution
+Authorization Any request made without the authorization key (secret key) will fail with a 401 (Unauthorized) response code.
+:::
+
+:::info
+The authorization key is sent via the request header as Bearer Token Authorization
+::: 
+
+**Example:**
+Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
+
+**DUE TO SENSITIVITY OF THIS API, PLEASE NOTE THAT THIS API CAN ONLY BE MADE AVAILABLE TO YOU BY THE TECHNICAL ACCOUNT MANAGER UPON APPROVAL.**
+
+### Sample Request
+
+```
+{
+    "amount":10000,
+    "token_id":"tJlYMKcwPd",
+}
+```
+
+### Go Live
+To go live, simply: 
+
+1. Change the base URL of your endpoints from sandbox-api-d.squadco.com to 
+api-d.squadco.com
+2. [Sign up on our Live Environment](https://dashboard.squadco.com/login)
+3. Complete your KYC
+4. Use the secret key provided on the dashboard to replace the test keys gotten from the sandbox environment to authenticate your live transactions.
+
+
+
+
+<Script strategy="beforeInteractive" src={`https://checkout.squadco.com/widget/squad.min.js`} />
+
+
+
+
+
+

@@ -8,7 +8,7 @@ export const paymentLinkAPI = [
         title: "Header",
         children: [
             {
-                key: "1",
+                key: "transaction_ref1",
                 dataType: "String",
                 description: "Title/Name of the Payment Link",
                 required: true,
@@ -19,19 +19,19 @@ export const paymentLinkAPI = [
         title: "Body",
         children: [
             {
-                key: "transaction_ref",
+                key: "transaction_ref2",
                 dataType: "String",
                 description: "Title/Name of the Payment Link",
                 required: true,
             },
             {
-                key: "2",
+                key: "transaction_ref3",
                 dataType: "String",
                 description: "Title/Name of the Payment Link",
                 required: true
             },
             {
-                key: "3",
+                key: "transaction_ref4",
                 dataType: "String",
                 description: "Title/Name of the Payment Link",
                 required: true

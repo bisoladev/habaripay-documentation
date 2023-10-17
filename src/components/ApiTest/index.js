@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Highlight, { defaultProps } from "prism-react-renderer"
 import github from "prism-react-renderer/themes/github"
 import { Pre, Line, LineContent, LineNo } from "./styles"
+import CodeBlock from '@theme/CodeBlock';
 
 const ApiTest = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -9,12 +10,20 @@ const ApiTest = () => {
   const [email, setEmail] = useState("")
 
   let code =
-    `Curl https:/api.squad.co/payment/Initiate
+    `Curl https://api.squad.co/payment/Initiate
 -H "Authorization: Bearer sk_test_DEFAULT"
 -H "Content-Type: application/json" 
-${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email + " " : "_ "
-    }}`}
--X POST `;
+${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " : "_ "
+    }"}`}
+-X POST 
+
+
+
+
+
+
+`;
+
 
   function initWidget() {
     console.log('fired here');
@@ -46,19 +55,30 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
   }
 
   return (
-    <div className='flex flex-col justify-center align-middle'>
-      <div className='h-10 w-[98%] border-2 border-solid border-[#ebebf2] rounded-t-lg flex justify-between pt-3 px-2 md:px-5 text-[11px] md:text-[13px] leading-[10px]'>
+    <div className='flex flex-col justify-center align-middle '>
+      <div className='relative h-10 w-[98%] border-2 border-solid border-[#ebebf2] rounded-t-lg flex justify-between pt-3 px-2 md:px-5 text-[11px] md:text-[13px] leading-[10px]'>
         <div className='flex'>
           <div className='w-[10px] h-[10px] bg-[#e73a2e] opacity-40 rounded-full max-[480px]:w-1 max-[480px]:h-1' />
           <div className='w-[10px] h-[10px] bg-[#fcc938] opacity-40 rounded-full mx-1 max-[480px]:w-1 max-[480px]:h-1' />
           <div className='w-[10px] h-[10px] bg-[#12b36c] opacity-40 rounded-full max-[480px]:w-1 max-[480px]:h-1' />
         </div>
-        <div className='flex'>
+        <div className='flex '>
           <p className='text-[#008488]'>POST</p>
           <p className='text-gray-500 pl-2 md:pl-4'>api.squad.co/payment/Initiate</p>
         </div>
-        <div>
-          <p className='text-[#008488] text-[10px] md:text-xs'>cURL</p>
+        <div className=' group'>
+          <div className='flex'>
+            <p className='text-[#008488] text-[10px] md:text-xs'>cURL</p>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className='fill-[#008488] ml-1 mt-[2px]'>
+                <path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+              </svg>
+            </span>
+          </div>
+          <div className="invisible opacity-0 right-1 top-9 absolute z-20 duration-100 group-hover:opacity-100 group-hover:visible transition-all bg-white py-2 border-2 border-solid border-gray-200 rounded">
+            <p className='pt-3 hover:bg-gray-200 rounded'>Javascript</p>
+            <p className='font-medium'>Dart</p>
+          </div>
         </div>
       </div>
       <div className='w-[98%] border-2 border-solid border-[#ebebf2] border-t-0 rounded-b-lg px-5 py-6 md:grid  md:grid-cols-2'>
@@ -98,29 +118,7 @@ ${`-d{“amount”:${amount ? amount + "," : "_ ,"} “email”: ${email ? email
           <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-full md:w-7/12 hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-[10px] rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
         </div>
         <div className=''>
-          <Highlight
-            {...defaultProps}
-            code={code}
-            theme={github}
-            language={"jsx"}
-          >
-            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-              <Pre className={className} style={style}>
-                <div className="code-wrap">
-                  {tokens?.map((line, i) => (
-                    <Line key={i} {...getLineProps({ line, key: i })}>
-                      <LineNo>{i + 1}</LineNo>
-                      <LineContent>
-                        {line?.map((token, key) => (
-                          <span key={key} {...getTokenProps({ token, key })} />
-                        ))}
-                      </LineContent>
-                    </Line>
-                  ))}
-                </div>
-              </Pre>
-            )}
-          </Highlight>
+          <CodeBlock className="language-jsx">{code}</CodeBlock>
         </div>
         <div>
         </div>

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Highlight, { defaultProps } from "prism-react-renderer"
-import github from "prism-react-renderer/themes/github"
-import { Pre, Line, LineContent, LineNo } from "./styles"
+import CodeBlock from '@theme/CodeBlock';
 
 
 export const Toggle = ({ data }) => {
@@ -21,7 +19,7 @@ export const Toggle = ({ data }) => {
       <div className="header" onClick={onClick}>
         <div className="flex">
           <div className={`w-2 h-2 flex-none rounded-full ${pillColor} mt-2 mr-2`} />
-          <span className="">{data?.status}</span>
+          <span className="flex-none">{data?.status}</span>
         </div>
 
         <span className="justify-self-center font-normal">
@@ -33,29 +31,7 @@ export const Toggle = ({ data }) => {
       </div>
       <div className="accordion-details">
         <div className="content">
-          <Highlight
-            {...defaultProps}
-            code={data?.code}
-            theme={github}
-            language={"jsx"}
-          >
-            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-              <Pre className={className} style={style}>
-                <div className="code-wrap">
-                  {tokens?.map((line, i) => (
-                    <Line key={i} {...getLineProps({ line, key: i })}>
-                      <LineNo>{i + 1}</LineNo>
-                      <LineContent>
-                        {line?.map((token, key) => (
-                          <span key={key} {...getTokenProps({ token, key })} />
-                        ))}
-                      </LineContent>
-                    </Line>
-                  ))}
-                </div>
-              </Pre>
-            )}
-          </Highlight>
+          <CodeBlock className="language-jsx my-5">{data?.code}</CodeBlock>
         </div>
       </div>
     </Wrapper>
