@@ -2,7 +2,65 @@
 sidebar_position: 7
 ---
 
+import Accordion from "@site/src/components/Accordion";
+import AccordionCode from "@site/src/components/AccordionCode";
+import {paymentLinkAPI, paymentLinkResponse} from "../src/data/PaymentLinkDocs/data.js";
 
 # Refund API
+
+This API is used to initiate refund process on a successful transaction.
+
+:::caution Authorization
+Any request made without the authorization key (secret key) will fail with a 401 (Unauthorized) response code.
+:::
+
+:::info
+The authorization key is sent via the request header as Bearer Token Authorization
+:::
+
+**Example:**
+Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+#### Sample Request
+
+#### Full Refund
+
+```js
+{
+    "gateway_transaction_ref": "wvszqsdrujscpuaofnea529117332_1_1",
+    "refund_type": "Full",
+    "reason_for_refund": "Any reason",
+    "transaction_ref": "vszqsdrujscpua"
+}
+```
+
+#### Partial Refund
+
+```js
+{
+    "gateway_transaction_ref": "SQOKOY3167299494777_1_1",
+    "refund_type": "Partial",
+    "reason_for_refund": "Testing Testing",
+    "transaction_ref": "SQOKOY3167299494777",
+    "refund_amount":"20000"
+}
+```
+
+### GO LIVE - Production
+To Use this API on production:
+
+1. Kindly change the base URL of the endpoint from sandbox-api-d.squadco.com to api-d.squadco.com
+2. Get production keys from your production environment on dashboard.squadco.com and replace as authorization keys.
 
 

@@ -1,0 +1,31 @@
+---
+sidebar_position: 11
+---
+
+import Accordion from "@site/src/components/Accordion";
+import AccordionCode from "@site/src/components/AccordionCode";
+import {paymentLinkAPI, paymentLinkResponse} from "../src/data/PaymentLinkDocs/data.js";
+
+# Wallet Balance
+
+<p className="text-[#8899a8] font-normal text-xl">This endpoint allows you get your Squad Wallet Balance. Please be informed that the wallet balance is in KOBO. (Please note that you can't get wallet balance for Dollar transactions).
+</p>
+
+:::caution Authorization
+Any request made without the authorization key will fail with a 401 (Service Not Authorized) response code.
+:::
+
+:::info
+Authorization would be done via Headers using Keys gotten from your dashboard. 
+:::
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>

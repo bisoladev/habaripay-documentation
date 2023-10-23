@@ -1,0 +1,107 @@
+---
+sidebar_position: 1
+---
+import Accordion from "@site/src/components/Accordion";
+import AccordionCode from "@site/src/components/AccordionCode";
+import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js";
+
+# Value Added Services
+
+<p className="text-[#8899a8] font-normal text-xl">These are suites of API that allows you vend airtime and data. Please note that the equivalent value of all data and airtime vended will be charged from your SQUAD WALLET. </p>
+
+### API KEYS (Test Environment)
+1. Create an account on our sandbox environment: sandbox.squadco.com
+2. Retrieve keys from the bottom of the Get Started Page 
+
+:::caution Authorization
+Any request made without the authorization key (secret key) will fail with a 401 (Unauthorized) response code.
+:::
+
+:::info
+The authorization key is sent via the request header as Bearer Token Authorization
+:::
+
+**Example:**
+Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
+
+### VEND AIRTIME
+This API allows you vend airtime. Minimum amount that can be vended is 50 naira.
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+#### Sample Request
+
+```js
+{ 
+    "phone_number": "08139011943", 
+    "amount": 5000 
+} 
+```
+
+### VEND DATA BUNDLES
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+#### Sample Request
+
+```js
+{ 
+    "phone_number": "07062918558", 
+    "amount": 100, 
+    "plan_code": "1001" 
+} 
+```
+
+### GET DATA BUNDLES
+This API returns all available data bundle plans for all telcos
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+### GET ALL TRANSACTIONS
+This API returns all transactions done by a merchant.
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+### GO LIVE
+To go live, simply: 
+
+1. Change the base URL for your endpoints from sandbox-api-d.squadco.com to 
+api-d.squadco.com
+2. [Sign up on our live enviroment](http://dashboard.squadco.com/)
+3. Complete your KYC
+4. Use the secret keys provided on the dashboard to authenticate your live transactions

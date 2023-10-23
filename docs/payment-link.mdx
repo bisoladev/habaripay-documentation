@@ -1,0 +1,67 @@
+---
+sidebar_position: 7
+---
+
+import Accordion from "@site/src/components/Accordion";
+import AccordionCode from "@site/src/components/AccordionCode";
+import {paymentLinkAPI, paymentLinkResponse} from "../src/data/PaymentLinkDocs/data.js";
+
+# Payment Link
+
+This API is used to create a simple payment link. All calls to this end point is to be made using your secret key gotten from your dashboard.
+
+:::caution Authorization
+Any request made without the authorization key (secret key) will fail with a 401 (Unauthorized) response code.
+:::
+
+:::info
+The authorization key is sent via the request header as Bearer Token Authorization
+:::
+
+**Example:**
+Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
+
+#### Sample Request
+
+```js
+{
+    "name": "Demo Otp Link",
+    "hash": "mypaymentlink",
+    "link_status": 1,
+    "expire_by": "2023-04-26T11:22:08.587Z",
+    "amounts": [
+        {
+            "amount": 4000,
+            "currency_id": "NGN"
+        }
+    ],
+    "description": "My description",
+    "redirect_link": "https://fjfhgfd.com",
+    "return_msg": "Successful"
+}
+```
+
+### Creating a Payment Link
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+### Generating the Link
+The payment link is a concatenation of the base URL: https://sandbox-pay.squadco.com/ and the hash selected when creating the payment link
+
+For instance, if the hash is mypaymentlink then the payment link will be _https://sandbox-pay.squadco.com/mypaymentlink_
+
+### GO LIVE - Production
+To create payment link on production:
+
+1. Kindly change the base URL of the endpoint from sandbox-api-d.squadco.com to api-d.squadco.com
+2. Get production keys from your production environment on dashboard.squadco.com
+3. On production, the base URL for concatenation of the payment link needs to be changed from sandbox-pay.checkout.squadco.com/hash to pay.checkout.squadco.co/hash
