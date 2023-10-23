@@ -1,0 +1,166 @@
+---
+sidebar_position: 3
+---
+
+# Dynamic Virtual Account
+
+import Accordion from "@site/src/components/Accordion";
+import AccordionCode from "@site/src/components/AccordionCode";
+import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
+
+<p className="text-[#8899a8] font-normal text-xl"> This module contains APIs that allow you generate Virtual Accounts that can be used on a transaction basis. This means that you can set a timer for expiry, a transaction ref etc. </p>
+
+### Payloads for this endpoints
+
+- transaction_ref : This is a datatype string, which is optional. If a value is not provided for this payload, an internal generated transaction ref is returned, else the unique transaction ref provided will be used.
+- amount: This is required field of datatype decimal and its in Kobo.
+- email: this is a required field of email string. This is the customer email where upon successful transaction, receipt would be sent.
+- duration: This is an optional integer field. By default, account number expires in 30mins, If value is provided, the value should be in seconds.
+
+
+### Initiate Dynamic Virtual Transfer
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+
+#### Sample Request
+
+```js
+{
+    "transaction_ref": "Trans0004",
+    "amount": 890000,
+    "email": "abioye.et2016@gmail.com"
+}
+
+```
+
+#### Sample Response
+
+```js
+
+    {
+        "status": 200,
+        "success": true,
+        "message": "Success",
+        "data": {
+            "expected_amount": 8900,
+            "is_blocked": false,
+            "transaction_reference": "Trans000428883",
+            "account_name": "SQUAD CHECKOUT",
+            "account_number": "3239145486",
+            "expires_at": "2023-06-05T11:17:26.45Z",
+            "bank": "GTBank",
+            "currency": "NGN"
+            }
+    }
+
+```
+
+### Verify Dynamic Transfer
+This takes the transaction ref as a path parameter
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+#### Sample Response
+
+```js
+{
+    "status": 200,
+    "success": true,
+    "message": "Success",
+    "data": {
+        "transaction_amount": 100000,
+        "transaction_ref": "Trkjohnny22",
+        "email": "abioye.et2016@gmail.com",
+        "transaction_status": "success",
+        "transaction_currency_id": "NGN",
+        "created_at": "2023-04-17T14:47:36.601",
+        "transaction_type": "transfer",
+        "merchant_name": "Okoye Anthony",
+        "merchant_business_name": "Okoye Anthony",
+        "gateway_transaction_ref": "Trkjohnny22_5_1_1",
+        "merchant_email": "tony@gmail.com"
+    }
+}
+
+```
+
+### Simulate Dynamic Transfer
+This allows you push transactions to the virtual accounts so you can test the behaviour even before switching to live.
+
+<Accordion 
+    items={paymentLinkAPI} 
+    parameters={true} 
+    endpoint={"transaction/initiate"} 
+    method={"POST"} 
+    header={"This verifies a transaction"} 
+    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+/>
+
+<AccordionCode items={paymentLinkResponse}/>
+
+#### Sample Request
+
+:::note
+**Please note that the simulate amount is in Naira**
+:::
+
+This means that if you initiate with an amount of 5000(5000k), when simulating , you are expected to pass an amount of 50k.
+
+```js
+{
+    "virtual_account_number": "3239145486",
+    "amount" : "1000",
+    "type": "dynamic"
+}
+```
+
+#### Sample Response
+
+```js
+{
+    "status": 200,
+    "success": true,
+    "message": "Success",
+    "data": "Payment successful"
+}
+```
+
+### Webhook Notification for Dynamic Virtual Account
+This is the structure of the webhook notification recieved on successful transactions
+
+```js
+{
+  "Event": "charge_successful",
+  "TransactionRef": "chizobaDVA",
+  "Body": {
+    "amount": 5000,
+    "transaction_ref": "chizobaDVA",
+    "gateway_ref": "chizobaDVA",
+    "email": "subroutine09@gmail.com",
+    "merchant_id": "5UM2B63R",
+    "transaction_type": "Transfer",
+    "merchant_amount": 5000,
+    "created_at": "2023-05-04T01:00:00",
+    "is_recurring": false
+  }
+}
+```
