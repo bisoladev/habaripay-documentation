@@ -14,6 +14,7 @@
   --ifm-color-primary-lighter: #ce003b;
   --ifm-color-primary-lightest: #e90042;
   --ifm-code-font-size: 92%;
+  --ifm-background-color:  !important;
   --docusaurus-highlighted-code-line-bg: rgba(147, 178, 244, 0.38) !important;
 }
 
@@ -33,15 +34,15 @@
   font-size: 0.95rem;
 }
 
-.nav-link_getting-started {
-  font-weight: 600;
+.nav-link_login {
+  font-weight: 500;
   white-space: nowrap;
-  color: #fff;
-  background-color: #e51e56;
-  border-radius: 3px;
+  color: #E51E56 !important;
+  background-color: transparent;
+  border: 1px solid #E51E56;
   margin: 0 15px;
   padding-bottom: 4.5px;
-  font-size: 0.95rem;
+  font-size: 14px;
 }
 
 .nav-link_getting-started:hover {
@@ -60,6 +61,18 @@
   padding: 8px 22px;
   border-bottom: 0.1px solid rgb(65, 64, 64);
 }
+[data-theme="light"] .theme-doc-sidebar-container {
+  border-right: 1px solid #2D48753D;
+  font-size: 0.95rem;
+  background: #F6FAFB;
+}
+
+[data-theme="light"] .navbar {
+  background-color: #FCFEFF;
+  font-size: 0.95rem;
+  padding: 8px 22px;
+  box-shadow: 0px 4px 4px 0px rgba(208, 208, 208, 0.25);
+}
 
 [data-theme="dark"] .card {
   background-color: #191919;
@@ -77,6 +90,49 @@
   background-color: #fbfbfb;
   transition: 0.2s ease all;
 }
+
+.navbar__link {
+  color: #2D4875;
+  font-size: 14px;
+}
+
+button.clean-btn svg {
+  color: #2D4875;
+}
+
+.menu__link {
+  font-size: 14px;
+  padding-block: 10px;
+  color: #2D4875;
+  font-weight: 400;
+}
+
+a.menu__link--sublist-caret::after {
+  color: red !important;
+}
+
+
+/* toggleButton_node_modules-@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module" */
+
+a.menu__link.menu__link--sublist.menu__link--sublist-care {
+  outline: 50px solid red;
+}
+#__docusaurus > nav > div.navbar__inner > div.navbar__items.navbar__items--right > div.toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module.colorModeToggle_node_modules-\@docusaurus-theme-classic-lib-theme-Navbar-Content-styles-module {
+  order: -1;
+}
+
+.menu__link--sublist-caret:after {
+  background-size: 20px;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: transparent;
+  color: #E51E56;
+  border-left: 3px solid #E51E56;
+  border-radius:0;
+  transition: all ease 0.1s;
+}
+
 
 @tailwind base;
 @tailwind components;

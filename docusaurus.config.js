@@ -86,18 +86,18 @@ const config = {
 
         logo: {
           alt: "My Site Logo",
-          src: "img/nav-logo.svg",
+          src: "img/squad_logo.svg",
           width: 146,
           height: 22,
         },
 
         items: [
-          {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
-            label: "Guide",
-          },
+          // {
+          //   type: "docSidebar",
+          //   sidebarId: "tutorialSidebar",
+          //   position: "left",
+          //   label: "Guide",
+          // },
           // {
           //   type: "search",
           //   position: "right",
@@ -108,69 +108,27 @@ const config = {
             href: "https://squadco.com/support/",
             target: "_blank",
             rel: null,
+            className: "nav-link_suppport"
           },
           // {
           //   type: "separator",
           //   position: "right",
           // },
           {
-            to: "https://dashboard.squadco.com/login",
-            label: "Login",
+            to: "https://dashboard.squadco.com/sign-up",
+            label: "Create Account",
             position: "right",
           },
           {
-            to: "https://dashboard.squadco.com/sign-up",
-            label: "Get Started",
+            to: "https://dashboard.squadco.com/login",
+            label: "Sign In",
             position: "right",
-            className: "nav-link_getting-started",
+            className: "nav-link_login"
+
           },
+          
         ],
-      },
-      // footer: {
-      //   style: "dark",
-      //   links: [
-      //     {
-      //       title: "Docs",
-      //       items: [
-      //         {
-      //           label: "Tutorial",
-      //           to: "/docs/intro",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       title: "Community",
-      //       items: [
-      //         {
-      //           label: "Stack Overflow",
-      //           href: "https://stackoverflow.com/questions/tagged/docusaurus",
-      //         },
-      //         {
-      //           label: "Discord",
-      //           href: "https://discordapp.com/invite/docusaurus",
-      //         },
-      //         {
-      //           label: "Twitter",
-      //           href: "https://twitter.com/docusaurus",
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       title: "More",
-      //       items: [
-      //         {
-      //           label: "Blog",
-      //           to: "/blog",
-      //         },
-      //         {
-      //           label: "GitHub",
-      //           href: "https://github.com/facebook/docusaurus",
-      //         },
-      //       ],
-      //     },
-      //   ],
-      //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-      // },
+      },    
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
