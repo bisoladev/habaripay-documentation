@@ -17,10 +17,6 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
     }"}`}
 -X POST 
 
-
-
-
-
 `;
 
 
@@ -81,7 +77,7 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
         </h4>
         <p className='text-sm text-[#475569] leading-3'>Help us send transactions receipts to the customers</p>
       </div>
-      <div className='py-6 md:grid md:grid-cols-2 md:gap-9'>
+      <div className='py-6 md:grid md:grid-cols-2 md:gap-9 items-center'>
         <div className=''>
           <form className='text-base'>
             

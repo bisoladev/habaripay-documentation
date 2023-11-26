@@ -177,6 +177,14 @@ a.menu__link.menu__link--sublist.menu__link--sublist-care {
     border: 1px solid #A5D0E9;
 }
 
+pre code, .codeBlock_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module{
+  background: #1E293B;
+}
+
+.token-line {
+  color: #ffffff !important;
+}
+
 
 @tailwind base;
 @tailwind components;
