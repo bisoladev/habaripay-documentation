@@ -133,6 +133,40 @@ a.menu__link.menu__link--sublist.menu__link--sublist-care {
   transition: all ease 0.1s;
 }
 
+.pagination-nav {
+  border-top: 1px solid rgba(45, 72, 117, 0.24);
+}
+
+.pagination-nav__link {
+  border: none;
+}
+
+.pagination-nav__label {
+  color: #475569;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.pagination-nav__sublabel {
+  display: none;
+}
+
+.markdown h1:first-child {
+  color: #0B3142;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.markdown > pre, .markdown > ul, .markdown > p {
+  color: #475569;
+}
+
+.markdown > h5 {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(45,72,117,0.7);
+}
+
 
 @tailwind base;
 @tailwind components;

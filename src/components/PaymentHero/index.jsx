@@ -7,7 +7,7 @@ const ECommerceImg = '/img/e-commerce.svg';
 
 const Hero = () => {
     return (
-        <div className='grid grid-cols-3 gap-6 m-auto'>
+        <div className='grid grid-cols-3 gap-6 mx-auto my-14'>
             <div
                className={twMerge('rounded-lg hover:no-underline text-center p-6',
                                   'grid place-items-center hover:text-[#0B3142] text-[#0B3142] bg-[#F6FAFB]')}>
