@@ -167,6 +167,16 @@ a.menu__link.menu__link--sublist.menu__link--sublist-care {
   color: rgba(45,72,117,0.7);
 }
 
+.alert--warning {
+    --ifm-alert-background-color: #FEEDD6;
+    border: 1px solid #F3DFC3;
+}
+
+.alert--info {
+    --ifm-alert-background-color: #E9F7FF;
+    border: 1px solid #A5D0E9;
+}
+
 
 @tailwind base;
 @tailwind components;
