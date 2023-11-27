@@ -6,7 +6,7 @@ const Accordion = (props) => {
 
   const classState = active ? "open" : "";
   const rotate = active ? "rotate-90" : "";
-  const methodColor = props?.method === "POST" ? "bg-[#217837]" : props?.method === "GET" ? "bg-[#2854D2]" : "bg-[green]"
+  const methodColor = props?.method === "POST" ? "bg-[#3F826D]" : props?.method === "GET" ? "bg-[#2854D2]" : "bg-[green]"
 
   const onClick = () => {
     setActive(state => !state);
@@ -16,9 +16,9 @@ const Accordion = (props) => {
 
 
   return (
-    <Container className=' dark:border-[#303337]'>
+    <Container className=' dark:border-[#303337] border-2 border-solid border-[#EBEBF2] rounded-lg px-9 pt-2.5 pb-4 mt-6'>
       <Wrapper className={`${classState}`}>
-        <div className="header" onClick={onClick}>
+        <div className="font-semibold text-sm cursor-pointer flex justify-between items-center" onClick={onClick}>
           <div className={`${methodColor} w-12 md:w-16 h-4 md:h-6 rounded-3xl text-center text-xs md:text-sm flex-none mt-2 mr-4 md:mr-2 text-white`}>{props.method}</div>
 
           <span className="justify-self-center font-medium text-[10px] ml-4 lg:ml-0 md:text-sm">
@@ -42,9 +42,9 @@ const Accordion = (props) => {
                       <div className="items-wrap overflow-scroll">
                         {item?.children?.map((param) => {
                           return (
-                            <div key={param?.key + id} className="grid gap-2 grid-cols-[1fr_1fr_2fr] text-xs md:text-sm border-bottom pt-3.5">
+                            <div key={param?.key + id} className="grid gap-2 grid-cols-[1fr_1fr_2fr] text-xs md:text-sm border-0 border-b border-solid border-[rgba(174,174,174,0.2)] pt-3.5">
                               <div className='text'>
-                                <p className="tracking-widest">{param?.key}</p>
+                                <p className="tracking-widest border-0 border-solid border-b-3 border-red-100">{param?.key}</p>
                               </div>
                               <div>
                                 <p>{param?.dataType}</p>
@@ -71,20 +71,10 @@ const Accordion = (props) => {
 export default Accordion;
 
 const Container = styled.div`
-  border: 1px solid #eeeeee;
-  border-radius: 5px;
-  padding: 10px 35px 15px;
-  margin-top: 25px;
-
   .items-wrap {
     :last-child {
     border-bottom: none;
   }
-  }
-
-  .border-bottom {
-    border-bottom: 1px solid rgba(174, 174, 174, 0.2);
-
   }
 
   @media only screen and (max-width: 600px) {
@@ -93,18 +83,7 @@ const Container = styled.div`
 `;
 
 
-
-
 const Wrapper = styled.div`
-  
-  .header {
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
   .accordion-details {
     display: grid;

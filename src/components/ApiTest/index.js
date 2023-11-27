@@ -17,6 +17,9 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
     }"}`}
 -X POST 
 
+
+
+
 `;
 
 
@@ -53,7 +56,7 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
     <div className='flex flex-col justify-center align-middle border-2 border-solid border-[#EBEBF2] rounded-lg md:px-5 px-2'>
       <div className='relative h-10 flex justify-between pt-3.5 text-[11px] md:text-[13px] leading-[10px]  border-b-2 border-0 border-solid border-[#EBEBF2]'>
         <div className='flex '>
-          <p className='text-[#3F826D] font'>POST</p>
+          <p className='text-[#3F826D] font-semibold'>POST</p>
           <p className='text-[rgba(45,72,117,0.70)]  pl-2 md:pl-4'>api.squad.co/payment/Initiate</p>
         </div>
         <div className=' group'>

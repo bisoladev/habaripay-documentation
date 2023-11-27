@@ -52,11 +52,10 @@ export default function AccordionCode({ items }) {
     </Container>
   );
 };
-
 const Container = styled.div`
-  border: 1px solid #eeeeee;
-  border-radius: 5px;
-  padding: 10px 35px 15px;
+  border: 2px solid #EBEBF2;
+  border-radius: 8px;
+  padding: 14px 35px 15px;
   margin-top: 1.5rem;
 
   :last-child {
