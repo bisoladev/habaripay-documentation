@@ -34,7 +34,7 @@ Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
 <Accordion 
     items={initiatePaymentApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/transaction/initiate"} 
     method={"POST"} 
     summary={"This endpoint returns a checkout URL that when visited calls up the modal with the various payment channel."}
 />
@@ -104,7 +104,7 @@ This allows you charge a card using the token generated during the initial trans
 <Accordion 
     items={chargeCardApi} 
     parameters={true} 
-    endpoint={"transaction/charge_card"} 
+    endpoint={"https://sandbox-api-d.squadco.com/transaction/charge_card"} 
     method={"POST"} 
     summary={"This endpoint returns a checkout URL that when visited calls up the modal with the various payment channel."}
 />

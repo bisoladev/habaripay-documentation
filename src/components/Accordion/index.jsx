@@ -22,7 +22,7 @@ const Accordion = (props) => {
           <div className={`${methodColor} w-12 md:w-16 h-4 md:h-6 rounded-3xl text-center text-xs md:text-sm flex-none mt-2 mr-4 md:mr-2 text-white`}>{props.method}</div>
 
           <span className="justify-self-center font-medium text-[10px] ml-4 lg:ml-0 md:text-sm">
-            https://sandbox-api-d.squadco.com/<span className="font-normal">{props.endpoint}</span>
+            <span className="font-normal">{props.endpoint}</span>
           </span>
           <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all flex-none justify-self-end dark:fill-white`}>
             <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />

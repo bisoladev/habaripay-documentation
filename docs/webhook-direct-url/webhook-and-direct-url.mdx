@@ -4,7 +4,7 @@ sidebar_position: 1
 
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
+import {WebhookValidationApi} from "../../src/data/WebhookDirectUrlDocs/data"
 
 
 # Webhook & Redirect URL
@@ -39,15 +39,14 @@ To configure webhook notifications: go to **_dashboard > profile > Api & Webhook
 
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={WebhookValidationApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://api.gitbook.com/v1/users"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"The Webhook is a post request that is triggered whenever a transaction is successful"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<br/>
 
 Sample POST request to be sent via webhook upon successful transaction
 
@@ -157,6 +156,8 @@ Sample POST request to be sent via webhook upon successful transaction
   }
 }
 ```
+
+<br />
 
 :::note
 **Please Note that the encrypted body (x-squad-encrypted-body) is usually sent via the header**
