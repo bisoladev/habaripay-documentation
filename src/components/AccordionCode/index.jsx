@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CodeBlock from '@theme/CodeBlock';
+import { twMerge } from "tailwind-merge";
 
 
 export const Toggle = ({ data }) => {
@@ -8,21 +9,23 @@ export const Toggle = ({ data }) => {
 
   const classState = open ? "open" : "";
   const rotate = open ? "rotate-90" : "";
-  const pillColor = data?.pill;
+
+  console.log(data, 'data')
 
   const onClick = () => {
     setOpen(state => !state);
   }
 
   return (
-    <Wrapper className={`${classState} dark:border-b-[#303337]`}>
-      <div className="header" onClick={onClick}>
+    <Wrapper className={`${classState} dark:border-b-[#303337] cursor-pointer`}>
+      <div className="grid grid-cols-[2fr_3fr_1fr]" onClick={onClick}>
         <div className="flex">
-          <div className={`w-2 h-2 flex-none rounded-full ${pillColor} mt-2 mr-2`} />
+          <div className={twMerge("w-2 h-2 flex-none rounded-full mt-2 mr-2", data?.pill)} />
           <span className="flex-none">{data?.status}</span>
         </div>
 
-        <span className="justify-self-center font-normal">
+        
+        <span className=" font-normal">
           {data?.responseMsg}
         </span>
         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" className={`${rotate} transition-all justify-self-end dark:fill-white`} >

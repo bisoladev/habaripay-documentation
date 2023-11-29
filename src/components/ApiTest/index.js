@@ -53,17 +53,17 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
   }
 
   return (
-    <div className='flex flex-col justify-center align-middle border-2 border-solid border-[#EBEBF2] rounded-lg md:px-5 px-2'>
-      <div className='relative h-10 flex justify-between pt-3.5 text-[11px] md:text-[13px] leading-[10px]  border-b-2 border-0 border-solid border-[#EBEBF2]'>
+    <div className='flex flex-col justify-center align-middle border-2 border-solid border-[#EBEBF2] dark:border-[#303337] rounded-lg md:px-5 px-2'>
+      <div className='relative h-10 flex justify-between pt-3.5 text-[11px] md:text-[13px] leading-[10px]  border-b-2 border-0 border-solid border-[#EBEBF2] dark:border-b-[#303337]'>
         <div className='flex '>
-          <p className='text-[#3F826D] font-semibold'>POST</p>
-          <p className='text-[rgba(45,72,117,0.70)]  pl-2 md:pl-4'>api.squad.co/payment/Initiate</p>
+          <p className='text-[#3F826D] font-semibold dark:text-[#4CB393]'>POST</p>
+          <p className='text-[rgba(45,72,117,0.70)] dark:text-[#a8b7cc] pl-2 md:pl-4'>api.squad.co/payment/Initiate</p>
         </div>
         <div className=' group'>
           <div className='flex'>
-            <p className='text-[#3F826D] text-[10px] md:text-xs'>cURL</p>
+            <p className='text-[#3F826D] text-[10px] md:text-xs dark:text-[#4CB393]'>cURL</p>
             <span>
-              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className='fill-[#008488] ml-1 mt-[2px]'>
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className='fill-[#008488] dark:fill-[#4CB393] ml-1 mt-[2px]'>
                 <path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
               </svg>
             </span>
@@ -75,10 +75,10 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
         </div>
       </div>
       <div className='pt-8'>
-        <h4 className='text-[#0B3142] leading-3'>
+        <h4 className='text-[#0B3142] leading-3 dark:text-[#E2E8EF]'>
           Enter Payment details
         </h4>
-        <p className='text-sm text-[#475569] leading-3'>Help us send transactions receipts to the customers</p>
+        <p className='text-sm text-[#475569] leading-3 dark:text-[#94A3B8]'>Help us send transactions receipts to the customers</p>
       </div>
       <div className='py-6 md:grid md:grid-cols-2 md:gap-9 items-center'>
         <div className=''>
@@ -93,7 +93,7 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
               placeholder='e.g 10000'
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className='rounded-[4px] px-3 py-3 border-[#BDBDBD] border-solid border placeholder:text-[#828282]'
+              className='rounded-[4px] px-3 py-3 border-[#BDBDBD] border-solid border placeholder:text-[#828282] dark:bg-transparent'
             />
             <p className='text-xs pt-1 font-medium text-[#828282]'>minimum amount is 1000</p>
           </div>
@@ -105,7 +105,7 @@ ${`-d{"amount":${amount ? amount + "," : "_ ,"} "email": "${email ? email + " " 
               placeholder='e.g example@email.com'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className='rounded-[4px] px-3 py-3 border-[#BDBDBD] border-solid border placeholder:text-[#828282]'
+              className='rounded-[4px] px-3 py-3 border-[#BDBDBD] border-solid border placeholder:text-[#828282] dark:bg-transparent'
             />
           </div>
           <button type='submit' onClick={initWidget} className='bg-[#e51e56] w-full hover:bg-[#d43d68] border-none text-white mt-7 mb-2 py-3 rounded-[4px] font-semibold cursor-pointer'>Send Request</button>
