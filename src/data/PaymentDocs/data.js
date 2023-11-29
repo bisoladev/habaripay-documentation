@@ -236,3 +236,81 @@ export const chargeCardResponse = [
     },
 
 ]
+
+export const verifyTransactionApi = [
+    {
+        title: "Query",
+        children: [
+            {
+                key: "transaction_ref",
+                dataType: "String",
+                description: "Unique transaction reference that identifies each transaction",
+                required: true,
+            },
+
+        ],
+    }
+]
+
+export const verifyTransactionResponse = [
+    {
+        status: "200:OK",
+        responseMsg: "Valid Transaction Reference",
+        pill: colors?.greenColor,
+        code: `{
+            "status": 200,
+            "success": true,
+            "message": "Success",
+            "data": {
+                "transaction_amount": 5000,
+                "transaction_ref": "SQCHIZ3634573076082",
+                "email": "ayo@gmail.com",
+                "transaction_status": "Success",
+                "transaction_currency_id": "NGN",
+                "created_at": "0001-01-01T00:00:00",
+                "transaction_type": "VirtualAccount",
+                "merchant_name": "CHIZOBA ANTHONY",
+                "merchant_business_name": null,
+                "gateway_transaction_ref": "SQCHIZ3634573076082",
+                "recurring": null,
+                "merchant_email": "okoyeanthonychizoba@gmail.com",
+                "plan_code": null
+            }
+        }
+`
+    },
+    {
+        status: "400:Bad Request",
+        responseMsg: "Invalid Transaction Reference",
+        pill: colors?.orangeColor,
+        code: `{
+            "status": 400,
+            "success": false,
+            "message": "Invalid transaction reference",
+            "data": {}
+        }`
+    },
+    {
+        status: "401:Unauthorized",
+        responseMsg: "Unauthorized Request",
+        pill: colors?.orangeColor,
+        code: `//sending a request without an authorization key
+            {
+                "success": false,
+                "message": "",
+                "data": {}
+            }`
+    },
+    {
+        status: "403:Forbidden",
+        responseMsg: "Invalid API Key",
+        pill: colors?.orangeColor,
+        code: `//sending a request with an Invalid key
+            {
+                "success": false,
+                "message": "API key is invalid. Key must start with sandbox_sk_",
+                "data": {}
+            }`
+    },
+
+]

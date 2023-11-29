@@ -4,7 +4,7 @@ sidebar_position: 4
 
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
+import {verifyTransactionApi, verifyTransactionResponse} from "../../src/data/PaymentDocs/data.js"
 
 
 # Verify Transaction
@@ -44,15 +44,15 @@ The authorization key is sent via the request header as Bearer Token Authorizati
 Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={verifyTransactionApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
+    endpoint={"transaction/verify/{{transaction_ref}}"} 
+    method={"GET"} 
     header={"This verifies a transaction"} 
     summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={verifyTransactionResponse}/>
 
 #### Go Live
 If you are using the verify transaction endpoint, kindly change the base URL to https://api-d.squadco.com
