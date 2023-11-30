@@ -3,7 +3,15 @@ sidebar_position: 1
 ---
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js";
+import {vendAirtimeAPI,
+        vendAirtimeResponse,
+        vendDataBundlesAPI,
+        vendDataBundlesResponse,
+        getDataBundlesAPI,
+        getDataBundlesResponse,
+        getAllTransactionsAPI,
+        getAllTransactionsResponse
+} from "../../src/data/ValueAddedServicesDocs/data";
 
 # Value Added Services
 
@@ -27,16 +35,16 @@ Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
 ### VEND AIRTIME
 This API allows you vend airtime. Minimum amount that can be vended is 50 naira.
 
+
 <Accordion 
-    items={paymentLinkAPI} 
+    items={vendAirtimeAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/vending/purchase/airtime"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"This API vends Airtime"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={vendAirtimeResponse}/>
 
 #### Sample Request
 
@@ -49,15 +57,14 @@ This API allows you vend airtime. Minimum amount that can be vended is 50 naira.
 
 ### VEND DATA BUNDLES
 <Accordion 
-    items={paymentLinkAPI} 
+    items={vendDataBundlesAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/vending/purchase/data"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"This is the data bundle vending endpoint."} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={vendDataBundlesResponse}/>
 
 #### Sample Request
 
@@ -73,29 +80,27 @@ This API allows you vend airtime. Minimum amount that can be vended is 50 naira.
 This API returns all available data bundle plans for all telcos
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={getDataBundlesAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/vending/data-bundles?network=MTN"} 
+    method={"GET"} 
+    header={"This API returns all available data bundle plans for all telcos"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={getDataBundlesResponse}/>
 
 ### GET ALL TRANSACTIONS
 This API returns all transactions done by a merchant.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={getAllTransactionsAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://api-d.squadco.com/vending/transactions?page=1&perPage=4&action=debit"} 
+    method={"GET"} 
+    header={"This API returns all transactions done by a merchant."} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={getAllTransactionsResponse}/>
 
 ### GO LIVE
 To go live, simply: 

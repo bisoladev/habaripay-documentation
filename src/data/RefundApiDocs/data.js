@@ -1,5 +1,4 @@
-const greenColor = "bg-[#217837]";
-const orangeColor = "bg-[#A94A09]";
+import {colors} from "../constants"
 
 
 export const refundAPI = [
@@ -45,7 +44,7 @@ export const refundResponse = [
     {
         status: "200:OK",
         responseMsg: "Success",
-        pill: greenColor,
+        pill: colors.greenColor,
         code: `{
             "status": 200,
             "success": true,
@@ -60,7 +59,7 @@ export const refundResponse = [
     {
         status: "401:Unathorized",
         responseMsg: "No API Key",
-        pill: orangeColor,
+        pill: colors.orangeColor,
         code: `{
             "success": false,
             "message": "",

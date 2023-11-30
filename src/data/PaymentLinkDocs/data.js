@@ -1,5 +1,4 @@
-const greenColor = "bg-[#217837]";
-const orangeColor = "bg-[#A94A09]";
+import {colors} from "../constants"
 
 
 export const paymentLinkAPI = [
@@ -69,7 +68,7 @@ export const paymentLinkResponse = [
     {
         status: "200:OK",
         responseMsg: "Successful",
-        pill: greenColor,
+        pill: colors.greenColor,
         code: `{
             "status": 200,
             "success": true,
@@ -108,7 +107,7 @@ export const paymentLinkResponse = [
     {
         status: "400:Bad Request",
         responseMsg: "Bad Request",
-        pill: orangeColor,
+        pill: colors.orangeColor,
         code: `{
             "status": 400,
             "success": false,
@@ -119,7 +118,7 @@ export const paymentLinkResponse = [
     {
         status: "401:Unathorized",
         responseMsg: "Unathorized",
-        pill: orangeColor,
+        pill: colors.orangeColor,
         code: `{
             "success": false,
             "message": "",

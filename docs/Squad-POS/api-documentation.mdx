@@ -4,7 +4,13 @@ sidebar_position: 2
 
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js";
+import {getAllTransactionsAPI,
+        getAllTransactionsResponse,
+        createTerminalAPI,
+        createTerminalResponse,
+        getAllTerminalsAPI,
+        getAllTerminalsResponse
+        } from "../../src/data/SquadPosDocs/data";
 
 # API Documentation
 
@@ -23,30 +29,27 @@ Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
 This API allows you get all your SquadPOS transactions
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={getAllTransactionsAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/softpos/transactions?perPage&page"} 
+    method={"GET"} 
+    header={"Allows you get all your Squad POS transactions"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={getAllTransactionsResponse}/>
 
 
 ### Create Terminal
 This API allows yopu create multiple SquadPOS terminals which are associated to your squad account
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={createTerminalAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/softpos/terminal"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={createTerminalResponse}/>
 
 
 #### Sample Request
@@ -61,6 +64,15 @@ This API allows yopu create multiple SquadPOS terminals which are associated to 
 ```
 ### Get all Terminals
 This API allows you see all  SquadPOS terminals created and associated to your account.
+
+<Accordion 
+    items={getAllTerminalsAPI} 
+    parameters={true} 
+    endpoint={"https://sandbox-api-d.squadco.com/softpos/terminals"} 
+    method={"GET"} 
+/>
+
+<AccordionCode items={getAllTerminalsResponse}/>
 
 ### GO LIVE - Production
 To Use this API on production:
