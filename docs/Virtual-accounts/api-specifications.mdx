@@ -6,7 +6,28 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
+import {
+    customerModelApi, 
+    customerModelResponse, 
+    BusinessModelApi,  
+    BusinessModelResponse, 
+    getWebhookErrorLogApi, 
+    getWebhookErrorLogResponse, 
+    deleteWebhookErrorLogApi, 
+    deleteWebhookErrorLogResponse,
+    queryCustomerTransactionApi,
+    queryAllMerchantTransactionsApi,
+    queryAllMerchantTransactionsMultipleFiltersApi,
+    queryAllMerchantTransactionsMultipleFiltersResponse,
+    customerDetailsByVirtualAccountNumberApi,
+    customerDetailsByVirtualAccountNumberResponse,
+    customerDetailsUsingCustomerIdentifierApi,
+    updateCustomerBVNAndUnfreezeTransactionApi,
+    updateBeneficiaryAccountApi,
+    updateBeneficiaryAccountResponse,
+    simulatePaymentApi ,
+    simulatePaymentResponse,
+    queryAllMerchantVirtualAccountsApi } from "../../src/data/VirtualAccountsDocs/data"
 
 # API Specifications
 
@@ -89,15 +110,15 @@ Please be informed that all accounts without the prefix will be flagged by our c
 :::
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={customerModelApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"Creating Virtual Accounts for Customers"} 
+    summary={"*asterisked are required and mandatory."}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={customerModelResponse}/>
 
 Response expected from the API to signify if the request received was successful
 
@@ -199,15 +220,14 @@ Please be informed that all accounts without the prefix will be flagged by our c
 ```
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={BusinessModelApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/business"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"Creating Virtual Account for businesses"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={BusinessModelResponse}/>
 
 ### Transaction Notification Service
 Upon registration and verification as a merchant, you are to create a Webhook and add on your Squad Dashboard to receive notification on payments.
@@ -457,42 +477,39 @@ Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
 ### Get Webhook Error Log
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={getWebhookErrorLogApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/webhook/logs"} 
+    method={"GET"} 
+    header={"This API returns an array of transactions from the webhook error log"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={getWebhookErrorLogResponse}/>
 
 ### Delete Webhook Error Log
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={deleteWebhookErrorLogApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/webhook/logs/:transaction_ref"} 
+    method={"DELETE"} 
+    header={"This API enables you delete a processed transaction from the webhook error log"} 
+    summary={"When you delete the transaction from the log, it won't be returned to you again. Failure to delete a transaction will result in the transaction being returned to you in the top 100 transactions returned each time you retry."}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={deleteWebhookErrorLogResponse}/>
 
 ### Query Customer Transaction by Customer Identifier
 This is an endpoint to query the transactions a customer has made. This is done using the customer's identifier which was passed when creating the virtual account.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={queryCustomerTransactionApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/customer/transactions/{{customer_identifier}}"} 
+    method={"GET"} 
+    header={"Query Customer Transactions"} 
+    summary={"Note: The customer identifier is to be passed via the endpoint being queried. That is: replace {{customer_identifier}} on the end point with the customer identifier of the customer whose transactions you want to query."}
 />
-
-<AccordionCode items={paymentLinkResponse}/>
 
 Response expected from the API to show queried Virtual Accounts.
 
@@ -573,7 +590,7 @@ Response expected from the API to show queried Virtual Accounts.
 {
     "status": 401,
     "success": false,
-    "message": "Merchant has been restricted, please contact Habaripay support",
+    "message": "",
     "data": {}
 }
 ```
@@ -581,47 +598,147 @@ Response expected from the API to show queried Virtual Accounts.
 </TabItem>
 </Tabs>
 
+### Query All Merchant's Transactions
+
+This is an endpoint to query all the merchant transactions over a period of time.
+
+<Accordion 
+    items={queryAllMerchantTransactionsApi} 
+    parameters={true} 
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/merchant/transactions"} 
+    method={"GET"} 
+    header={"Query All Transactions"} 
+    summary={"Note: The endpoint is to be queried using just the authorization key from the dashboard"}
+/>
+
+<Tabs>
+<TabItem value="SuccessfulMerchant" label="200: Successful">
+
+```js
+
+{
+    "status": 200,
+    "success": true,
+    "message": "Success",
+    "data": [
+        {
+            "transaction_reference": "4894fe1_1",
+            "virtual_account_number": "2244441333",
+            "principal_amount": "5000.00",
+            "settled_amount": "0.00",
+            "fee_charged": "0.00",
+            "transaction_date": "2022-04-21T09:00:00.000Z",
+            "transaction_indicator": "C",
+            "remarks": "Payment from 15B8 to 2244441333",
+            "currency": "NGN",
+            "frozen_transaction": {
+                "freeze_transaction_ref": "afbd9b7f-fb98-41c3-bfe8-dc351cfb45c7",
+                "reason": "Amount above 20000 when BVN not set"
+            },
+            "customer": {
+                "customer_identifier": "SBN1EBZEQ8"
+            }
+        },
+{
+            "transaction_reference": "676767_1",
+            "virtual_account_number": "2224449991",
+            "principal_amount": "30000.00",
+            "settled_amount": "1037.00",
+            "fee_charged": "13.00",
+            "transaction_date": "2022-03-21T09:00:00.000Z",
+            "transaction_indicator": "C",
+            "remarks": "Payment from 10A2 to 2224449991",
+            "currency": "NGN",
+            "froze_transaction": null,
+            "customer": {
+                "customer_identifier": "SBN1EBZEQ8"
+            }
+        }
+    ]
+}
+
+```
+
+</TabItem>
+<TabItem value="validation-failureMerchant" label="400: Validation Failure">
+
+```js
+{
+    "status": 400,
+    "success": false,
+    "message": "Merchant identifier is required",
+    "data": {}
+}
+```
+
+</TabItem>
+<TabItem value="Restricted" label="401: Restricted">
+
+```js
+{
+    "status": 401,
+    "success": false,
+    "message": "Merchant has been restricted, please contact Habaripay support",
+    "data": {}
+}
+```
+
+</TabItem>
+<TabItem value="not-found" label="404: Not Profiled">
+
+```js
+{
+    "status": 404,
+    "success": false,
+    "message": "Merchant is not profiled for this service, please contact Habaripay support",
+    "data": {}
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+
 ### Query All Merchant Transactions with Multiple Filters
 This endpoint allows you query all transactions and filter using multiple parameters like virtual account number, start and end dates, customer Identifier etc
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={queryAllMerchantTransactionsMultipleFiltersApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/merchant/transactions/all"} 
+    method={"GET"} 
+    header={"Query All Transactions with Multiple Filters"} 
+    summary={"This endpoint allows you query all transactions and filter using multiple parameters like virtual account number, start and end dates, customer Identifier etc"}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={queryAllMerchantTransactionsMultipleFiltersResponse}/>
 
 ### Get Customer Details by Virtual Account Number
 This is an endpoint to retrieve the details of a customer using the Virtual Account Number
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={customerDetailsByVirtualAccountNumberApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/customer/{{virtual_account_number}}"} 
+    method={"GET"} 
+    header={"Retrieve Virtual Account Details"} 
+    summary={"Note: The virtual account number is to be passed via the endpoint being queried. That is: replace {{virtual_account_number}} on the end point with the virtual account number whose details you want to retrieve."}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={customerDetailsByVirtualAccountNumberResponse}/>
 
 ### Get Customer Details Using Customer Identifier
 This is an endpoint to retrieve the details of a customer'svirtual account using the Customer Identifier
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={customerDetailsUsingCustomerIdentifierApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/{{customer_identifier}}"} 
+    method={"GET"} 
+    header={"Retrieve Virtual Account Details"} 
+    summary={"Note: The customer_identifier is to be passed via the endpoint being queried. That is: replace {{customer_identifier}} on the end point with the customer identifier of the customer whose virtual account you want to retrieve."}
 />
-
-<AccordionCode items={paymentLinkResponse}/>
 
 <Tabs>
 <TabItem value="Successful" label="200: Successful">
@@ -676,15 +793,13 @@ This is an endpoint to retrieve the details of a customer'svirtual account using
 ### Update Customer's BVN and Unfreeze Transaction
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={updateCustomerBVNAndUnfreezeTransactionApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/update/bvn"} 
+    method={"PATCH"} 
+    header={"Update customer's BVN and unfreeze transaction"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
 
 <Tabs>
 <TabItem value="Successful" label="200: Successful">
@@ -744,15 +859,15 @@ This is an endpoint to retrieve the details of a customer'svirtual account using
 This is an endpoint to look-up the virtual account numbers related to a merchant.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={queryAllMerchantVirtualAccountsApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/merchant/accounts"} 
+    method={"GET"} 
+    header={"Find All Virtual Account Number by Merchant"} 
+    summary={"This is an endpoint for merchants to query and retrieve all their virtual account."}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={customerModelApi}/>
 
 <Tabs>
 <TabItem value="Successful" label="200: Successful">
@@ -820,29 +935,28 @@ This is an endpoint to look-up the virtual account numbers related to a merchant
 ```
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={updateBeneficiaryAccountApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/update/beneficiary/account"} 
+    method={"PATCH"} 
+    header={"This is used to update beneficiary account"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={updateBeneficiaryAccountResponse}/>
 
 #### Simulate Payment
 This is an endpoint to simulate payments
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={simulatePaymentApi} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/virtual-account/simulate/payment"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"Simulate Payment"} 
+    summary={"This is an endpoint to simulate payment *asterisks are required and mandatory."}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={simulatePaymentResponse}/>
 
 ### Go Live
 To go live, simply: 

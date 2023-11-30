@@ -2,13 +2,15 @@
 sidebar_position: 2
 ---
 
-import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../../src/data/PaymentLinkDocs/data.js"
+import AccordionLang from "@site/src/components/AccordionLang";
+import {cSharpData, javascriptData, pythonData, phpData} from "../../src/data/VirtualAccountsDocs/data"
 
 # Encryption & Decryption
 
 Encryption and Decryption function for decrypting merchant transaction
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionLang items={javascriptData}/>
+<AccordionLang items={pythonData}/>
+<AccordionLang items={phpData}/>
+<AccordionLang items={cSharpData}/>
 
-<AccordionCode items={paymentLinkResponse}/>
