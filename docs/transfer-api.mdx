@@ -4,7 +4,15 @@ sidebar_position: 12
 
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../src/data/PaymentLinkDocs/data.js";
+import {accountLookupAPI,
+        accountLookupResponse,
+        errorCodeAPI, 
+        errorCodeResponse,
+        reQueryTransferAPI,
+        reQueryTransferResponse,
+        allTransfersAPI,
+        allTransfersResponse
+        } from "../src/data/PaymentLinkDocs/data.js";
 
 # Transfer API
 
@@ -25,15 +33,14 @@ Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
 This API allows you lookup/confirm the account name of the recipient you intend to credit. This should be done before initiating the transfer.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={accountLookupAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/payout/account/lookup"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"This API allows you confirm Account Name to be transferred to."} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={accountLookupResponse}/>
 
 #### Available Bank Codes
  
@@ -539,15 +546,14 @@ These are the various error codes that you might get on the transfer API and the
 | 412   | reversed     |
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={errorCodeAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/payout/transfer"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    summary={"This is for movement of funds from Squad Wallet to any bank account (GTB at the moment)"}
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={errorCodeResponse}/>
 
 ### Sample Request
 
@@ -567,15 +573,14 @@ These are the various error codes that you might get on the transfer API and the
 This API allows you re-query the status of a transfer made to know if it was successful, failed, reversed or pending.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={reQueryTransferAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
+    endpoint={"https://sandbox-api-d.squadco.com/payout/requery"} 
     method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    header={"This API allows you re-query the status of a transfer"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={reQueryTransferResponse}/>
 
 #### Sample Request
 
@@ -589,15 +594,14 @@ This API allows you re-query the status of a transfer made to know if it was suc
 This API Allows you retrieve the details of all transfers you have done from your Squad Wallet using this transfer solution.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={allTransfersAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/payout/list"} 
+    method={"GET"} 
+    header={"This API gets the details of all transfers you have done from your Squad Wallet "} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={allTransfersResponse}/>
 
 #### Sample Response: 200-ok
 
