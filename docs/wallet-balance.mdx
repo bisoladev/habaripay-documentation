@@ -4,7 +4,7 @@ sidebar_position: 11
 
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../src/data/PaymentLinkDocs/data.js";
+import {walletAPI, walletResponse} from "../src/data/WalletBalanceDocs/data.js";
 
 # Wallet Balance
 
@@ -20,12 +20,11 @@ Authorization would be done via Headers using Keys gotten from your dashboard.
 :::
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={walletAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/merchant/balance"} 
+    method={"GET"} 
+    header={"This endpoint allows you get your Squad Wallet Balance. Amount is in KOBO"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={walletResponse}/>
