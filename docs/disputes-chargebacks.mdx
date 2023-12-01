@@ -4,7 +4,7 @@ sidebar_position: 10
 
 import Accordion from "@site/src/components/Accordion";
 import AccordionCode from "@site/src/components/AccordionCode";
-import {paymentLinkAPI, paymentLinkResponse} from "../src/data/PaymentLinkDocs/data.js";
+import {getAllDisputesResponse, getUploadUrlAPI, resolveDisputesAPI} from "../src/data/ChargebackDisputeDocs/data.js";
 
 # Disputes & Chargebacks
 
@@ -34,43 +34,36 @@ Authorization: Bearer sandbox_sk_94f2b798466408ef4d19e848ee1a4d1a3e93f104046f
 This API is used to get all disputes on your transactions raised by your customers.
 
 <Accordion 
-    items={paymentLinkAPI} 
-    parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/dispute"} 
+    method={"GET"} 
+    header={"All you need to do is  make a get request with your private/secret key"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
+<AccordionCode items={getAllDisputesResponse}/>
 
 ### Get Upload URL
 This API is used to get a unique URL to upload an evidence(file) which is a proof or reason to reject a dispute. This is only necessary when we want to reject a dispute.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={getUploadUrlAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/dispute/upload-url/:ticket_id/:file_name"} 
+    method={"GET"} 
+    header={"All you need to do is  make a get request with your private/secret key"} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
 
 ### Resolve Disputes
 This API is used to resolve a dispute by either accepting or rejecting it.
 
 <Accordion 
-    items={paymentLinkAPI} 
+    items={resolveDisputesAPI} 
     parameters={true} 
-    endpoint={"transaction/initiate"} 
-    method={"POST"} 
-    header={"This verifies a transaction"} 
-    summary={"To verify the validity of a transaction, kindly query the endpoint above by replacing {{transaction_ref}} with the unique transaction_ref of the transaction you want to verify"}
+    endpoint={"https://sandbox-api-d.squadco.com/dispute/:ticked_id/resolve"} 
+    method={"GET"} 
+    header={"This API is used to resolve a dispute by either accepting or rejecting it. "} 
 />
 
-<AccordionCode items={paymentLinkResponse}/>
 
 ### GO LIVE - Production
 To Use this API on production:
