@@ -4,7 +4,9 @@ sidebar_position: 3
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ApiTest from "@site/src/components/ApiTest"
+import ApiTest from "@site/src/components/ApiTest";
+import TransferModalImg from "@site/src/components/ImagesComponent/TransferModal"
+import UssdModalImg from "@site/src/components/ImagesComponent/UssdModal"
 
 # Squad Payment Modal
 
@@ -160,6 +162,12 @@ After initialization, there are a couple of payment channels available to the cu
 #### USSD
 The USSD channel allows your Nigerian customers to pay you by dialing the USSD code on their mobile devices. Nigerian banks provide USSD services for customers to use for transactions, and we have integrated with some of these banks to allow your customers to complete payments.
 
+<br />
+
+<UssdModalImg />
+
+<br />
+
 After dialing the USSD code displayed, the system will prompt the user to input the USSD PIN to authenticate the transaction and then confirm it. All that is needed to initiate USSD payment is the customer's email and the amount to be charged. When the user makes a payment, the response will be sent to your webhook.
 
 :::info
@@ -196,6 +204,12 @@ Here is a list of all the Banks USSD _shortcodes_ we currently support:
 #### Bank Transfer
 
 Squad provides a payment method that makes it possible for customers to pay you through a direct bank account transfer. The customer provides their name, phone number, and email address. Then a preset account number is displayed along with the preregistered bank name.
+
+<br />
+
+<TransferModalImg />
+
+<br />
 
 #### Card
 With Squad, customers can pay with Card provided their card details are correct and updated.  The customer provides their card number, card expiry date, and CVV.

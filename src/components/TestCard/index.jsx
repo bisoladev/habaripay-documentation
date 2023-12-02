@@ -26,10 +26,8 @@ function TestCard() {
                 </p>
             </div>
             <div className='ml-10'>
-                <div className=" relative h-full w-[400px] bg-[url('@site/static/img/back-card.png')] bg-contain bg-no-repeat lg:w-[400px]">
-                    <p className="absolute right-[15%] top-[25%] text-white lg:top-[39%]">
-                        000
-                    </p>
+                <div className=" relative h-full w-[400px] bg-[url('@site/static/img/back-card.svg')] bg-contain bg-no-repeat lg:w-[400px]">
+                   
                 </div>
             </div>
         </div >

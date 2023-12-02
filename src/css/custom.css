@@ -27,7 +27,8 @@
   --ifm-color-primary-light: #fc9db8;
   --ifm-color-primary-lighter: #fdafc5;
   --ifm-color-primary-lightest: #fee5ec;
-  --ifm-background-color: #161616 !important;
+  /* --ifm-background-color: #161616 !important;Z */
+  --ifm-background-color: #151A1F !important;
 }
 
 .nav-font-size {
@@ -63,7 +64,8 @@
 }
   
 [data-theme="dark"] .navbar {
-  background-color: #161616;
+  /* background-color: #161616; */
+  background-color: #151A1F;
   font-size: 0.95rem;
   padding: 8px 22px;
   border-bottom: 0.1px solid rgb(65, 64, 64);
